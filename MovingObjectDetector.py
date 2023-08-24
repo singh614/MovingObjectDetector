@@ -6,11 +6,13 @@ def main():
 
     # Create background subtractor
     bg_subtractor = cv2.createBackgroundSubtractorMOG2()
-    
+
     while True:
         ret, frame = video_capture.read()
         if not ret:
             break
+        # Flip the frame horizontally
+        frame = cv2.flip(frame, 1)
         
         # Apply background subtraction
         fg_mask = bg_subtractor.apply(frame)
